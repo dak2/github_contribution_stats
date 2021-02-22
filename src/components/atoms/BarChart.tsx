@@ -1,6 +1,6 @@
-import { VictoryHistogram } from "victory";
+import { VictoryBar } from "victory";
 
-function HistogramChart() {
+function BarChart() {
   const sampleData = [
     { x: 1 },
     { x: 2 },
@@ -11,11 +11,11 @@ function HistogramChart() {
   ]
   return (
     <div>
-      <VictoryHistogram 
+      <VictoryBar 
         data={sampleData}
       />
     </div>
   );
 }
 
-export default HistogramChart;
+export default BarChart;
