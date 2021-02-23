@@ -1,18 +1,18 @@
 import BarChart from './BarChart';
 import PieChart from './PieChart';
 import UserIcon from './UserIcon';
-import '../../styles/CardBase.css'
+import style from '../../styles/CardBase.module.css'
 
 function CardBase() {
   return (
-    <div className="l-wrapper_06">
-      <div className="user_icon">
+    <div className={style.l_wrapper_06}>
+      <div className={style.user_icon}>
         <UserIcon />
       </div>
-      <div className="piechart">
+      <div className={style.pie_chart}>
         <PieChart />
       </div>
-      <div className="histogramchart">
+      <div className={style.bar_chart}>
         <BarChart />
       </div>
     </div>
