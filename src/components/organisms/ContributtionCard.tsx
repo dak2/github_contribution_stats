@@ -1,11 +1,12 @@
+import React from 'react';
 import CardBase from '../atoms/CardBase';
 
-function ContributtionCard() {
+const ContributtionCard: React.FC = () => {
   return (
     <div>
       <CardBase />
     </div>
   );
-}
+};
 
 export default ContributtionCard;

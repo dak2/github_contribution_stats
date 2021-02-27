@@ -1,9 +1,10 @@
+import React from 'react';
+import style from '../../styles/CardBase.module.css';
 import BarChart from './BarChart';
 import PieChart from './PieChart';
 import UserIcon from './UserIcon';
-import style from '../../styles/CardBase.module.css'
 
-function CardBase() {
+const CardBase: React.FC = () => {
   return (
     <div className={style.l_wrapper_06}>
       <div className={style.user_icon}>
@@ -17,6 +18,6 @@ function CardBase() {
       </div>
     </div>
   );
-}
+};
 
 export default CardBase;
