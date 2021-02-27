@@ -1,10 +1,12 @@
+
 import React from 'react';
+import ContributtionCard from './components/organisms/ContributtionCard'
 import './App.css';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header"></header>
+      <ContributtionCard />
     </div>
   );
 };
