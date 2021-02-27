@@ -1,6 +1,5 @@
-
 import React from 'react';
-import ContributtionCard from './components/organisms/ContributtionCard'
+import ContributtionCard from './components/organisms/ContributtionCard';
 import './App.css';
 
 const App: React.FC = () => {
