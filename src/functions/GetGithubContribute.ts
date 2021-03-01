@@ -2,7 +2,6 @@ import axios from 'axios';
 const GITHUB_API_URL = 'https://api.github.com';
 const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 
-// Prepare axios for GitHub API
 const request = axios.create({
   baseURL: GITHUB_API_URL,
   headers: {
@@ -12,7 +11,16 @@ const request = axios.create({
   responseType: 'json',
 });
 
-export const getContributions = (): void => {
-  console.log(GITHUB_TOKEN);
-  request.get('/users/dak2').then((res) => console.log(res));
+export const getContributions = async (
+  githuUserName: string,
+): Promise<void> => {
+  try {
+    await request
+      .get(`/users/${githuUserName}`)
+      .then((res) => console.log(res));
+  } catch (error) {
+    const { status } = error.response;
+    const errorMessage = error.response['data']['message'];
+    console.log(`Error! HTTP Status: ${status} ${errorMessage}`);
+  }
 };

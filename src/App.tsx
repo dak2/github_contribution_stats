@@ -6,7 +6,7 @@ import { getContributions } from './functions/GetGithubContribute';
 const App: React.FC = () => {
   return (
     <div className="App">
-      <button onClick={getContributions}>test</button>
+      <button onClick={() => getContributions('dak2')}>test</button>
       <ContributtionCard />
     </div>
   );
