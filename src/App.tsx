@@ -1,12 +1,16 @@
 import React from 'react';
 import ContributtionCard from './components/organisms/ContributtionCard';
 import './App.css';
-import { getContributions } from './functions/GetGithubContribution';
+import {
+  getGithubUser,
+  getGithubCommits,
+} from './functions/GetGithubContribution';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <button onClick={() => getContributions('dak2')}>test</button>
+      <button onClick={() => getGithubUser('dak2')}>getUser</button>
+      <button onClick={() => getGithubCommits('dak2')}>getCommits</button>
       <ContributtionCard />
     </div>
   );

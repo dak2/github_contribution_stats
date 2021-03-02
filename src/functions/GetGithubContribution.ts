@@ -11,12 +11,24 @@ const request = axios.create({
   responseType: 'json',
 });
 
-export const getContributions = async (
+export const getGithubUser = async (githuUserName: string): Promise<void> => {
+  try {
+    await request
+      .get(`/users/${githuUserName}`)
+      .then((res) => console.log(res));
+  } catch (error) {
+    const { status } = error.response;
+    const errorMessage = error.response['data']['message'];
+    console.log(`Error! HTTP Status: ${status} ${errorMessage}`);
+  }
+};
+
+export const getGithubCommits = async (
   githuUserName: string,
 ): Promise<void> => {
   try {
     await request
-      .get(`/users/${githuUserName}`)
+      .get(`/users/${githuUserName}/events`)
       .then((res) => console.log(res));
   } catch (error) {
     const { status } = error.response;
