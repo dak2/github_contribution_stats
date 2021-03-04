@@ -4,7 +4,7 @@ import './App.css';
 import {
   getGithubUser,
   getGithubCommits,
-} from './functions/GetGithubContribution';
+} from './functions/fetchGithubData';
 
 const App: React.FC = () => {
   return (
