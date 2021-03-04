@@ -15,7 +15,7 @@ export const getGithubUser = async (githuUserName: string): Promise<void> => {
   try {
     await request
       .get(`/users/${githuUserName}`)
-      .then((res) => res['data']['avatar_url']);
+      .then((res) => console.log(res));
   } catch (error) {
     const { status } = error.response;
     const errorMessage = error.response['data']['message'];
