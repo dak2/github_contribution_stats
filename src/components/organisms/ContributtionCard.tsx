@@ -1,5 +1,5 @@
 import React from 'react';
-import CardBase from '../atoms/CardBase';
+import CardBase from '../molecules/CardBase';
 
 const ContributtionCard: React.FC = () => {
   return (
