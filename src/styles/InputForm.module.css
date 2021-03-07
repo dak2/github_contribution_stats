@@ -9,6 +9,7 @@
   background: #fff;
   display: inline-block;
   border-radius: 10px;
+  text-align: center;
 }
 
 .input_form form input {
