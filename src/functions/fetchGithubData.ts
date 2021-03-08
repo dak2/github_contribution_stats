@@ -13,9 +13,9 @@ const request = axios.create({
 
 export const getGithubUser = async (githuUserName: string): Promise<void> => {
   try {
-    await request
+    return await request
       .get(`/users/${githuUserName}`)
-      .then((res) => console.log(res));
+      .then((res: any) => res.data.url);
   } catch (error) {
     const { status } = error.response;
     const errorMessage = error.response['data']['message'];
@@ -27,9 +27,9 @@ export const getGithubCommits = async (
   githuUserName: string,
 ): Promise<void> => {
   try {
-    await request
+    return await request
       .get(`/users/${githuUserName}/events`)
-      .then((res) => console.log(res));
+      .then((res: any) => res.data);
   } catch (error) {
     const { status } = error.response;
     const errorMessage = error.response['data']['message'];
