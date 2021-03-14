@@ -2,10 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import InputForm from './components/molecules/InputForm';
 import ContributtionCard from './components/organisms/ContributtionCard';
-import { fetchLocalStorage } from './functions/fetchLocalStorage';
 import './App.css';
-
-const fetchLocalStorageItem = fetchLocalStorage();
 
 const App: React.FC = () => {
   return (
@@ -13,10 +10,10 @@ const App: React.FC = () => {
       <Router>
         <Switch>
           <Route path="/card">
-            {fetchLocalStorageItem ? <ContributtionCard /> : <InputForm />}
+            <ContributtionCard />
           </Route>
           <Route path="/">
-            {fetchLocalStorageItem ? <ContributtionCard /> : <InputForm />}
+            <InputForm />
           </Route>
         </Switch>
       </Router>

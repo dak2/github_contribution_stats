@@ -1,34 +1,54 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { getGithubUser } from '../../functions/fetchGithubData';
+import { useHistory, withRouter } from 'react-router-dom';
+import {
+  getGithubUser,
+  getGithubCommits,
+} from '../../functions/fetchGithubData';
+
+interface Provider {
+  name?: string;
+  user?: string | Promise<void>;
+  commits?: string;
+}
 
 const InputName: React.FC = () => {
   const history = useHistory();
-  const [data, setData] = useState({ name: '', githubData: {} });
+  const [data, setData] = useState<Provider>({
+    name: '',
+    user: '',
+    commits: '',
+  });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setData({ name: event.target.value, githubData: {} });
+    setData({ name: event.target.value });
   };
 
-  const getGithubData = (val: string) => {
+  const handleClick = (val: string | undefined) => {
     console.log('test');
-    getGithubUser(val);
-    localStorage.setItem('githubUserName', val);
-    setTimeout(() => history.push('/card'), 1000);
+    const user = getGithubUser(val);
+    const commits = getGithubCommits(val);
+    val
+      ? localStorage.setItem('githubUserName', val)
+      : localStorage.setItem('githubUserName', '');
+    setData({ user: user });
+    console.log('user', user);
+    console.log('commits', commits);
+    // setTimeout(() => history.push({
+    //   pathname: '/card',
+    //   state: { user },
+    // }), 500)
   };
 
   return (
-    <form>
+    <div>
       <input
         placeholder={'GithubUserName'}
         style={{ outline: 'none' }}
         onChange={(event) => handleChange(event)}
       ></input>
-      <button type="submit" onClick={() => getGithubData(data.name)}>
-        Submit
-      </button>
-    </form>
+      <button onClick={() => handleClick(data.name)}>Submit</button>
+    </div>
   );
 };
 
-export default InputName;
+export default withRouter(InputName);
