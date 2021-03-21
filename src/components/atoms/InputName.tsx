@@ -5,38 +5,41 @@ import {
   getGithubCommits,
 } from '../../functions/fetchGithubData';
 
-interface Provider {
-  name?: string;
-  user?: string | Promise<void>;
-  commits?: string;
+interface State {
+  name: string;
 }
 
 const InputName: React.FC = () => {
   const history = useHistory();
-  const [data, setData] = useState<Provider>({
+  const [data, setData] = useState<State>({
     name: '',
-    user: '',
-    commits: '',
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setData({ name: event.target.value });
   };
 
-  const handleClick = (val: string | undefined) => {
-    console.log('test');
-    const user = getGithubUser(val);
-    const commits = getGithubCommits(val);
-    val
-      ? localStorage.setItem('githubUserName', val)
+  const handleClick = async (val?: string): Promise<void> => {
+    if (!val) {
+      return alert('名前を入力してください');
+    }
+    const user = await getGithubUser(val);
+    const commits = await getGithubCommits(val);
+    saveLocatStorage(val);
+    redirectToCard(user, commits);
+  };
+
+  const redirectToCard = (user: any, commits: any) => {
+    history.push({
+      pathname: '/card',
+      state: { user, commits },
+    });
+  };
+
+  const saveLocatStorage = (name?: string) => {
+    name
+      ? localStorage.setItem('githubUserName', name)
       : localStorage.setItem('githubUserName', '');
-    setData({ user: user });
-    console.log('user', user);
-    console.log('commits', commits);
-    // setTimeout(() => history.push({
-    //   pathname: '/card',
-    //   state: { user },
-    // }), 500)
   };
 
   return (
