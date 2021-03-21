@@ -1,17 +1,22 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import InputForm from './components/molecules/InputForm';
 import ContributtionCard from './components/organisms/ContributtionCard';
 import './App.css';
-import {
-  getGithubUser,
-  getGithubCommits,
-} from './functions/fetchGithubData';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <button onClick={() => getGithubUser('dak2')}>getUser</button>
-      <button onClick={() => getGithubCommits('dak2')}>getCommits</button>
-      <ContributtionCard />
+      <Router>
+        <Switch>
+          <Route path="/card">
+            <ContributtionCard />
+          </Route>
+          <Route path="/">
+            <InputForm />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 };

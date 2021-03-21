@@ -1,0 +1,37 @@
+.form_wrapper {
+  position: absolute;
+  width: 300px;
+  height: 250px;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  background: #fff;
+  display: inline-block;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.input_form div input {
+  box-sizing: border-box;
+  width: 50%;
+  padding: 0.3em;
+  transition: 0.3s;
+  letter-spacing: 1px;
+  color: #000;
+  border: none;
+  border-bottom: 2px solid #1b2538;
+  background: transparent;
+}
+
+.input_form div button {
+  display: block;
+  margin: auto;
+  margin-top: 1em;
+  padding: 0.2em 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  border-color: #e5e5e5;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  background-color: #e5e5e5;
+}

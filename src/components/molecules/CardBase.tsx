@@ -1,8 +1,8 @@
 import React from 'react';
 import style from '../../styles/CardBase.module.css';
-import BarChart from './BarChart';
-import PieChart from './PieChart';
-import UserIcon from './UserIcon';
+import BarChart from '../atoms/BarChart';
+import PieChart from '../atoms/PieChart';
+import UserIcon from '../atoms/UserIcon';
 
 const CardBase: React.FC = () => {
   return (
