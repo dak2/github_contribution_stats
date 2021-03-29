@@ -1,7 +1,21 @@
 import React from 'react';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from 'victory';
 
-const BarChart: React.FC = () => {
+type Commits = {
+  id: string;
+  type: string;
+  actor: Record<string, unknown>;
+  repo: Record<string, unknown>;
+  payload: Record<string, unknown>;
+};
+
+
+type Props = {
+  commits: Commits[]
+};
+
+const BarChart: React.FC<Props> = (props: Props) => {
+
   const sampleData = [
     { x: 1, y: 2 },
     { x: 2, y: 3 },
