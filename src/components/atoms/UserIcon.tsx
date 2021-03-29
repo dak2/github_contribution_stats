@@ -10,8 +10,16 @@ type Props = {
 };
 
 const UserIcon: React.FC<Props> = (props: Props) => {
-  console.log('avatar', props);
-  return <BiUserCircle className={style.usercircle_icon} />;
+  if (props) {
+    return (
+      <div>
+        <img src={props.avatarUrl} className={style.usercircle_icon}></img>
+        <p className={style.user_name}>{props.name}</p>
+      </div>
+    );
+  } else {
+    return <BiUserCircle className={style.default_usercircle_icon} />;
+  }
 };
 
 export default UserIcon;
