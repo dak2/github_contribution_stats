@@ -1,22 +1,9 @@
 import React from 'react';
 import style from '../../styles/CardBase.module.css';
+import { Commits, User } from '../../utils/propsType'
 import BarChart from '../atoms/BarChart';
 import PieChart from '../atoms/PieChart';
 import UserIcon from '../atoms/UserIcon';
-
-type Commits = {
-  id: string;
-  type: string;
-  actor: Record<string, unknown>;
-  repo: Record<string, unknown>;
-  payload: Record<string, unknown>;
-};
-
-type User = {
-  avatar_url: string;
-  login: string;
-  url: string;
-};
 
 type Props = {
   user: User;
