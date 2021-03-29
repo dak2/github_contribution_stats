@@ -1,6 +1,7 @@
 export type Commits = {
   id: string;
   type: string;
+  created_at: Date;
   actor: Record<string, unknown>;
   repo: Record<string, unknown>;
   payload: Record<string, unknown>;
