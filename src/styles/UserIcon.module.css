@@ -1,5 +1,18 @@
+.default_usercircle_icon {
+  width: 100px;
+  height: 100px;
+  margin: 2em;
+}
+
 .usercircle_icon {
   width: 100px;
   height: 100px;
   margin: 2em;
+  margin-bottom: 1px;
+  border: 1px solid #30363d;
+  border-radius: 50%;
+}
+
+.user_name {
+  margin-left: 32px;
 }
