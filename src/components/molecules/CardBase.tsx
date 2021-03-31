@@ -1,6 +1,6 @@
 import React from 'react';
 import style from '../../styles/CardBase.module.css';
-import { Commits, User } from '../../utils/propsType'
+import { Commits, User } from '../../utils/propsType';
 import BarChart from '../atoms/BarChart';
 import PieChart from '../atoms/PieChart';
 import UserIcon from '../atoms/UserIcon';
@@ -15,6 +15,7 @@ const CardBase: React.FC<Props> = (props: Props) => {
   const pushEvents = commits.filter((commit) => {
     return commit.type == 'PushEvent';
   });
+
   return (
     <div className={style.l_wrapper_06}>
       <div className={style.user_icon}>
@@ -28,7 +29,7 @@ const CardBase: React.FC<Props> = (props: Props) => {
         <PieChart />
       </div>
       <div className={style.bar_chart}>
-        <BarChart commits={pushEvents}/>
+        <BarChart commits={pushEvents} />
       </div>
     </div>
   );
