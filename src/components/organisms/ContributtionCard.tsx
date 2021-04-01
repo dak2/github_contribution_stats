@@ -10,7 +10,6 @@ type LocationState = {
 const ContributtionCard: React.FC = () => {
   const location = useLocation<LocationState>();
   const { user, commits } = location.state;
-  console.log('location', location);
 
   return (
     <div>
