@@ -2,12 +2,18 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import CardBase from '../molecules/CardBase';
 
+type LocationState = {
+  user: any;
+  commits: any;
+};
+
 const ContributtionCard: React.FC = () => {
-  const location = useLocation();
-  console.log('location', location);
+  const location = useLocation<LocationState>();
+  const { user, commits } = location.state;
+
   return (
     <div>
-      <CardBase />
+      <CardBase user={user} commits={commits} />
     </div>
   );
 };
