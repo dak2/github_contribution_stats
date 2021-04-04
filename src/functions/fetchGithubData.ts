@@ -23,7 +23,7 @@ export const getGithubUser = async (
   }
 };
 
-export const getGithubCommits = async (
+export const getGithubEvents = async (
   githuUserName: string | undefined,
 ): Promise<void | any> => {
   try {

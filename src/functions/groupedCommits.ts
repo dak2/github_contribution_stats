@@ -1,42 +1,45 @@
 import { format, utcToZonedTime } from 'date-fns-tz';
 import { timeZone, weekDays, today } from '../utils/constDate';
-import { Commits } from '../utils/propsType';
+import { Events } from '../utils/propsType';
 
 type groupedCommits = {
   x: number;
   y: number;
 };
 
-type grouped = {
+type groupedByDates = {
   dayOfWeek: number;
-  commitDate: Date;
+  eventDate: Date;
+  commitSize: number;
 };
 
-export const groupedCommits = (commits: Commits[]): groupedCommits[] => {
-  const res: grouped[] = [];
-  const commitDates = commits.map(
-    (commit) =>
+export const groupedCommits = (events: Events[]): groupedCommits[] => {
+  console.log('commits', events);
+  const res: groupedByDates[] = [];
+  const eventDates = events.map(
+    (event) =>
       new Date(
         format(
-          utcToZonedTime(commit.created_at, timeZone),
+          utcToZonedTime(event.created_at, timeZone),
           'yyyy-MM-dd HH:mm:ss',
         ),
       ),
   );
 
   weekDays(today).map((element) => {
-    commitDates.map((commitDate) => {
+    eventDates.map((eventDate) => {
       const date_compared =
-        element.dates.start <= commitDate && commitDate <= element.dates.end;
+        element.dates.start <= eventDate && eventDate <= element.dates.end;
       date_compared
-        ? res.push({ dayOfWeek: commitDate.getDay(), commitDate })
+        ? res.push({ dayOfWeek: eventDate.getDay(), eventDate, commitSize: 1 })
         : null;
     });
   });
+  console.log('res', res);
   const result = [0, 1, 2, 3, 4, 5, 6].map((week) => {
     const list = res.filter((r) => r.dayOfWeek === week);
     return {
-      x: week+1,
+      x: week + 1,
       y: list.length,
     };
   }) as groupedCommits[];
