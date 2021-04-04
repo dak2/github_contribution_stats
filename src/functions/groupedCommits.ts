@@ -9,39 +9,69 @@ type groupedCommits = {
 
 type groupedByDates = {
   dayOfWeek: number;
-  eventDate: Date;
+  commitDate: Date;
+  commitSize: number;
+};
+
+type commitSizeByDate = {
+  date: Date;
   commitSize: number;
 };
 
 export const groupedCommits = (events: Events[]): groupedCommits[] => {
-  console.log('commits', events);
-  const res: groupedByDates[] = [];
-  const eventDates = events.map(
-    (event) =>
-      new Date(
+  const commitSizes = commitSizeByDate(events);
+  const commitComparedDate = dateCompare(today, commitSizes);
+  return grouping(commitComparedDate);
+};
+
+const commitSizeByDate = (events: Events[]): commitSizeByDate[] => {
+  return events.map((event) => {
+    return {
+      date: new Date(
         format(
           utcToZonedTime(event.created_at, timeZone),
           'yyyy-MM-dd HH:mm:ss',
         ),
       ),
-  );
+      commitSize: event.payload.size,
+    };
+  });
+};
 
+const dateCompare = (
+  today: Date,
+  commitSizes: commitSizeByDate[],
+): groupedByDates[] => {
+  const res: groupedByDates[] = [];
   weekDays(today).map((element) => {
-    eventDates.map((eventDate) => {
+    commitSizes.map((commit) => {
+      // 指定日付内のcommitかどうか確認
       const date_compared =
-        element.dates.start <= eventDate && eventDate <= element.dates.end;
+        element.dates.start <= commit.date && commit.date <= element.dates.end;
       date_compared
-        ? res.push({ dayOfWeek: eventDate.getDay(), eventDate, commitSize: 1 })
+        ? res.push({
+            dayOfWeek: commit.date.getDay(),
+            commitDate: commit.date,
+            commitSize: commit.commitSize,
+          })
         : null;
     });
   });
-  console.log('res', res);
-  const result = [0, 1, 2, 3, 4, 5, 6].map((week) => {
-    const list = res.filter((r) => r.dayOfWeek === week);
+  return res;
+};
+
+const grouping = (commitComparedDate: groupedByDates[]): groupedCommits[] => {
+  return [0, 1, 2, 3, 4, 5, 6].map((week) => {
+    const list = commitComparedDate.filter(
+      (commit) => commit.dayOfWeek === week,
+    );
+    const commitSize = list.reduce(
+      (prev, current) => prev + current.commitSize,
+      0,
+    );
     return {
       x: week + 1,
-      y: list.length,
+      y: commitSize,
     };
-  }) as groupedCommits[];
-  return result;
+  });
 };
