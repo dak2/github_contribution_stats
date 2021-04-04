@@ -1,19 +1,20 @@
 import React from 'react';
 import style from '../../styles/CardBase.module.css';
-import { Commits, User } from '../../utils/propsType';
+import { Events, User } from '../../utils/propsType';
 import BarChart from '../atoms/BarChart';
 import PieChart from '../atoms/PieChart';
 import UserIcon from '../atoms/UserIcon';
 
 type Props = {
   user: User;
-  commits: Commits[];
+  events: Events[];
 };
 
 const CardBase: React.FC<Props> = (props: Props) => {
-  const { user, commits } = props;
-  const pushEvents = commits.filter((commit) => {
-    return commit.type == 'PushEvent';
+  const { user, events } = props;
+  console.log('events', events);
+  const pushEvents = events.filter((event) => {
+    return event.type == 'PushEvent';
   });
 
   return (
@@ -29,7 +30,7 @@ const CardBase: React.FC<Props> = (props: Props) => {
         <PieChart />
       </div>
       <div className={style.bar_chart}>
-        <BarChart commits={pushEvents} />
+        <BarChart events={pushEvents} />
       </div>
     </div>
   );

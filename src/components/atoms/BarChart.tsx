@@ -1,14 +1,14 @@
 import React from 'react';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from 'victory';
 import { groupedCommits } from '../../functions/groupedCommits';
-import { Commits } from '../../utils/propsType';
+import { Events } from '../../utils/propsType';
 
 type Props = {
-  commits: Commits[];
+  events: Events[];
 };
 
 const BarChart: React.FC<Props> = (props: Props) => {
-  const groupedCommit = groupedCommits(props.commits);
+  const groupedCommit = groupedCommits(props.events);
   const sample = [
     { x: 1, y: 2 },
     { x: 2, y: 3 },
@@ -18,7 +18,7 @@ const BarChart: React.FC<Props> = (props: Props) => {
     { x: 6, y: 7 },
     { x: 7, y: 5 },
   ];
-  const Bardata = props.commits ? groupedCommit : sample;
+  const Bardata = props.events ? groupedCommit : sample;
   return (
     <VictoryChart
       theme={VictoryTheme.material}

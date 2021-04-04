@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useHistory, withRouter } from 'react-router-dom';
 import {
   getGithubUser,
-  getGithubCommits,
+  getGithubEvents,
 } from '../../functions/fetchGithubData';
+import { Events, User } from '../../utils/propsType';
 
 interface State {
   name: string;
@@ -24,15 +25,15 @@ const InputName: React.FC = () => {
       return alert('名前を入力してください');
     }
     const user = await getGithubUser(val);
-    const commits = await getGithubCommits(val);
+    const events = await getGithubEvents(val);
     saveLocatStorage(val);
-    redirectToCard(user, commits);
+    redirectToCard(user, events);
   };
 
-  const redirectToCard = (user: any, commits: any) => {
+  const redirectToCard = (user: User, events: Events[]) => {
     history.push({
       pathname: '/card',
-      state: { user, commits },
+      state: { user, events },
     });
   };
 
