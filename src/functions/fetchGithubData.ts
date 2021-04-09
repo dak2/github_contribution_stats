@@ -36,3 +36,15 @@ export const getGithubEvents = async (
     console.log(`Error! HTTP Status: ${status} ${errorMessage}`);
   }
 };
+
+export const getGithubRepos = async (
+  githuUserName: string | undefined,
+): Promise<void | any> => {
+  try {
+    return request.get(`/users/${githuUserName}/repos`).then((res: any) => res);
+  } catch (error) {
+    const { status } = error.response;
+    const errorMessage = error.response['data']['message'];
+    console.log(`Error! HTTP Status: ${status} ${errorMessage}`);
+  }
+};
