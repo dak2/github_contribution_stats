@@ -26,7 +26,6 @@ const InputName: React.FC = () => {
     }
     const user = await getGithubUser(val);
     const events = await getGithubEvents(val);
-    saveLocatStorage(val);
     redirectToCard(user, events);
   };
 
@@ -35,12 +34,6 @@ const InputName: React.FC = () => {
       pathname: '/card',
       state: { user, events },
     });
-  };
-
-  const saveLocatStorage = (name?: string) => {
-    name
-      ? localStorage.setItem('githubUserName', name)
-      : localStorage.setItem('githubUserName', '');
   };
 
   return (
