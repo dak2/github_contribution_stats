@@ -1,12 +1,13 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Events, User } from '../../utils/propsType';
+import { Events, User, Repos } from '../../utils/propsType';
 import CardBase from '../molecules/CardBase';
 import InputForm from '../molecules/InputForm';
 
 type LocationState = {
   user: User;
   events: Events[];
+  repos: Repos[];
 };
 
 const ContributtionCard: React.FC = () => {
