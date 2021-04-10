@@ -3,8 +3,9 @@ import { useHistory, withRouter } from 'react-router-dom';
 import {
   getGithubUser,
   getGithubEvents,
+  getGithubRepos,
 } from '../../functions/fetchGithubData';
-import { Events, User } from '../../utils/propsType';
+import { Events, User, Repos } from '../../utils/propsType';
 
 interface State {
   name: string;
@@ -26,13 +27,14 @@ const InputName: React.FC = () => {
     }
     const user = await getGithubUser(val);
     const events = await getGithubEvents(val);
-    redirectToCard(user, events);
+    const repos = await getGithubRepos(val);
+    redirectToCard(user, events, repos);
   };
 
-  const redirectToCard = (user: User, events: Events[]) => {
+  const redirectToCard = (user: User, events: Events[], repos: Repos[]) => {
     history.push({
       pathname: '/card',
-      state: { user, events },
+      state: { user, events, repos },
     });
   };
 
