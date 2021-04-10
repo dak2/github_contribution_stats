@@ -41,7 +41,9 @@ export const getGithubRepos = async (
   githuUserName: string | undefined,
 ): Promise<void | any> => {
   try {
-    return request.get(`/users/${githuUserName}/repos`).then((res: any) => res);
+    return request
+      .get(`/users/${githuUserName}/repos`)
+      .then((res: any) => res.data);
   } catch (error) {
     const { status } = error.response;
     const errorMessage = error.response['data']['message'];
