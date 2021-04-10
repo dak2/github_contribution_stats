@@ -22,3 +22,9 @@ export type User = {
   login: string;
   url: string;
 };
+
+export type Repos = {
+  name: string;
+  language: string;
+  fork: boolean;
+};
