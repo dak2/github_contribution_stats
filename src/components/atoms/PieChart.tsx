@@ -1,7 +1,13 @@
 import React from 'react';
 import { VictoryPie } from 'victory';
+import { Repos } from '../../utils/propsType';
 
-const PieChart: React.FC = () => {
+type Props = {
+  repos: Repos[];
+};
+
+const PieChart: React.FC<Props> = (props: Props) => {
+
   const sampleData = [
     { x: 1, y: 2, label: 'one' },
     { x: 2, y: 3, label: 'two' },

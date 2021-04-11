@@ -13,10 +13,10 @@ type LocationState = {
 const ContributtionCard: React.FC = () => {
   const location = useLocation<LocationState>();
   if (location.state != undefined) {
-    const { user, events } = location.state;
+    const { user, events, repos } = location.state;
     return (
       <div>
-        <CardBase user={user} events={events} />
+        <CardBase user={user} events={events} repos={repos} />
       </div>
     );
   } else {
