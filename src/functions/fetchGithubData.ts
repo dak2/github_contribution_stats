@@ -14,39 +14,21 @@ const request = axios.create({
 export const getGithubUser = async (
   githuUserName: string | undefined,
 ): Promise<void | any> => {
-  try {
-    return request.get(`/users/${githuUserName}`).then((res: any) => res.data);
-  } catch (error) {
-    const { status } = error.response;
-    const errorMessage = error.response['data']['message'];
-    console.log(`Error! HTTP Status: ${status} ${errorMessage}`);
-  }
+  return request.get(`/users/${githuUserName}`).then((res: any) => res.data);
 };
 
 export const getGithubEvents = async (
   githuUserName: string | undefined,
 ): Promise<void | any> => {
-  try {
-    return request
-      .get(`/users/${githuUserName}/events`)
-      .then((res: any) => res.data);
-  } catch (error) {
-    const { status } = error.response;
-    const errorMessage = error.response['data']['message'];
-    console.log(`Error! HTTP Status: ${status} ${errorMessage}`);
-  }
+  return request
+    .get(`/users/${githuUserName}/events`)
+    .then((res: any) => res.data);
 };
 
 export const getGithubRepos = async (
   githuUserName: string | undefined,
 ): Promise<void | any> => {
-  try {
-    return request
-      .get(`/users/${githuUserName}/repos`)
-      .then((res: any) => res.data);
-  } catch (error) {
-    const { status } = error.response;
-    const errorMessage = error.response['data']['message'];
-    console.log(`Error! HTTP Status: ${status} ${errorMessage}`);
-  }
+  return request
+    .get(`/users/${githuUserName}/repos`)
+    .then((res: any) => res.data);
 };

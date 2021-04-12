@@ -25,10 +25,14 @@ const InputName: React.FC = () => {
     if (!val) {
       return alert('名前を入力してください');
     }
-    const user = await getGithubUser(val);
-    const events = await getGithubEvents(val);
-    const repos = await getGithubRepos(val);
-    redirectToCard(user, events, repos);
+    try {
+      const user = await getGithubUser(val);
+      const events = await getGithubEvents(val);
+      const repos = await getGithubRepos(val);
+      redirectToCard(user, events, repos);
+    } catch (error) {
+      alert('存在しないユーザー名です。');
+    }
   };
 
   const redirectToCard = (user: User, events: Events[], repos: Repos[]) => {
