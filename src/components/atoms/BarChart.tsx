@@ -30,7 +30,7 @@ const BarChart: React.FC<Props> = (props: Props) => {
         tickValues={[1, 2, 3, 4, 5, 6, 7]}
         tickFormat={weekDaysBarData().split(',')}
       />
-      <VictoryAxis dependentAxis tickFormat={(tick) => tick * 2} />
+      <VictoryAxis dependentAxis tickFormat={(tick) => tick} />
       <VictoryBar
         style={{
           data: {
