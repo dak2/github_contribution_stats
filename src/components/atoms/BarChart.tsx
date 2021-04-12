@@ -1,6 +1,7 @@
 import React from 'react';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from 'victory';
 import { groupedCommits } from '../../functions/groupedCommits';
+import { weekDaysBarData } from '../../utils/constDate';
 import { Events } from '../../utils/propsType';
 
 type Props = {
@@ -27,7 +28,7 @@ const BarChart: React.FC<Props> = (props: Props) => {
     >
       <VictoryAxis
         tickValues={[1, 2, 3, 4, 5, 6, 7]}
-        tickFormat={['月', '火', '水', '木', '金', '土', '日']}
+        tickFormat={weekDaysBarData().split(',')}
       />
       <VictoryAxis dependentAxis tickFormat={(tick) => tick * 2} />
       <VictoryBar
