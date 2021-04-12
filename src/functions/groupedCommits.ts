@@ -21,6 +21,8 @@ type commitSizeByDate = {
 export const groupedCommits = (events: Events[]): groupedCommits[] => {
   const commitSizes = commitSizeByDate(events);
   const commitComparedDate = dateCompare(today, commitSizes);
+  console.log('test', commitComparedDate);
+  console.log('test2', grouping(commitComparedDate));
   return orderByAsc(grouping(commitComparedDate));
 };
 
@@ -65,6 +67,7 @@ const grouping = (commitComparedDate: groupedByDates[]): groupedCommits[] => {
     const list = commitComparedDate.filter(
       (commit) => commit.dayOfWeek === week,
     );
+    console.log('list', list);
     const commitSize = list.reduce(
       (prev, current) => prev + current.commitSize,
       0,
@@ -81,8 +84,9 @@ const orderByAsc = (groupedCommits: groupedCommits[]): groupedCommits[] => {
   // 今日を一番最後として並び替える
   // https://stackoverflow.com/a/17892824
   const orderedCommits = groupedCommits
-    .slice(dayOfWeek)
-    .concat(groupedCommits.slice(0, dayOfWeek));
+    .slice(dayOfWeek + 1)
+    .concat(groupedCommits.slice(0, dayOfWeek + 1));
+  console.log('commits', orderedCommits);
   return orderedCommits.map((commit, index) => {
     return {
       x: index + 1,
