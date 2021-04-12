@@ -32,3 +32,12 @@ export const weekDays = (today: Date): weekDays[] => {
     };
   });
 };
+
+export const weekDaysBarData = (): string => {
+  const dayOfWeek = new Date().getDay();
+  const weekList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  return weekList
+    .slice(dayOfWeek + 1)
+    .concat(weekList.slice(0, dayOfWeek + 1))
+    .join();
+};
