@@ -9,7 +9,7 @@ type groupedLanguages = {
 export const groupedLanguages = (repos: Repos[]) => {
   const existsLanguages = repos.filter((repo) => repo.language != null);
   const res = orderdDesc(Object.entries(groupBy(existsLanguages, 'language')));
-  return convertToChartData(res)
+  return convertToChartData(res);
 };
 
 const groupBy = (objectArray: any[], property: string) => {
@@ -41,7 +41,7 @@ const convertToChartData = (ary: any[]) => {
     return res.push({
       x: index + 1,
       y: elm[1][0],
-      label: elm[0],
+      label: `${elm[0]} : ${elm[1][0]}`,
     });
   });
   return res;
