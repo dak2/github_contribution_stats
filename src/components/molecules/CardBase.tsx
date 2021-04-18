@@ -27,9 +27,11 @@ const CardBase: React.FC<Props> = (props: Props) => {
         />
       </div>
       <div className={style.pie_chart}>
+        <p>used languages</p>
         <PieChart repos={repos} />
       </div>
       <div className={style.bar_chart}>
+        <p>commits</p>
         <BarChart events={pushEvents} />
       </div>
     </div>

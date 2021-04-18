@@ -15,7 +15,7 @@ const PieChart: React.FC<Props> = (props: Props) => {
     { x: 3, y: 5, label: 'three' },
   ];
   const PieData = props.repos ? languages : sampleData;
-  return <VictoryPie height={250} data={PieData} />;
+  return <VictoryPie height={250} data={PieData} colorScale={'green'} />;
 };
 
 export default PieChart;
