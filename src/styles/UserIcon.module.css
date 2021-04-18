@@ -15,4 +15,6 @@
 
 .user_name {
   margin-left: 32px;
+  font-size: large;
+  font-weight: bold;
 }

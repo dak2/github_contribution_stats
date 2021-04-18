@@ -23,8 +23,20 @@
   height: 400px;
 }
 
+.pie_chart p {
+  font-size: x-large;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
 .bar_chart {
   display: inline-block;
   width: 50%;
   height: 400px;
+}
+
+.bar_chart p {
+  font-size: x-large;
+  text-decoration: underline;
+  font-weight: bold;
 }
